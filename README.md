@@ -56,7 +56,7 @@ The application provides the following API endpoints:
 #### Get Training Centers by Name
 - **Endpoint**: `GET /get-center-name?centerName=<centerName>`
 - **Description**: Retrieve training centers by center name.
-- **Request Parameters**:
+- **Path Parameters**:
  - `centerName`: The name of the training center.
 - **Response**: A list of training center objects matching the provided name.
  - **Status Code**: 200 OK
