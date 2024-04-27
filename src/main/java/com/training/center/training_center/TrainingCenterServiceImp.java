@@ -27,8 +27,14 @@ public class TrainingCenterServiceImp implements TrainingCenterService {
     }
 
     @Override
-    public List<TrainingCenter> getTrainingCenter(String CenterName) {
-        List<TrainingCenter> trainingCenter = repository.findByCenterName(CenterName);
+    public List<TrainingCenter> getTrainingCenter(String centerName) {
+        List<TrainingCenter> trainingCenter = repository.findByCenterName(centerName);
+        return trainingCenter;
+    }
+
+    @Override
+    public List<TrainingCenter> getTrainingCenterByCode(String centerCode) {
+        List<TrainingCenter> trainingCenter = repository.findByCenterCode(centerCode);
         return trainingCenter;
     }
 }

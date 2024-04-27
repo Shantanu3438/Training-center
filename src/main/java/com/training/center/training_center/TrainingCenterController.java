@@ -12,19 +12,18 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/training-centers")
 public class TrainingCenterController {
 
     @Autowired
     private TrainingCenterServiceImp trainingCenterService;
 
-    @GetMapping
+    @GetMapping("/training-center")
     public ResponseEntity<List<TrainingCenter>> getTrainingCenters() {
         List<TrainingCenter> trainingCenters = trainingCenterService.getTrainingCenter();
         return ResponseEntity.ok(trainingCenters);
     }
 
-    @PostMapping
+    @PostMapping("/training-centers")
     public ResponseEntity<?> addTrainingCenter(@Valid @RequestBody TrainingCenter newTrainingCenter, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getFieldErrors()
@@ -38,9 +37,13 @@ public class TrainingCenterController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTrainingCenter);
     }
 
-    @GetMapping("/{centerName}")
-    public List<TrainingCenter> getTrainingCenter(@RequestParam String CenterName) {
-        return trainingCenterService.getTrainingCenter(CenterName);
+    @GetMapping("/get-center-name")
+    public List<TrainingCenter> getTrainingCenter(@RequestParam String centerName) {
+        return trainingCenterService.getTrainingCenter(centerName);
     }
     
+    @GetMapping("/get-center-code")
+    public List<TrainingCenter> getTrainingCenterByCode(@RequestParam String centerCode) {
+        return trainingCenterService.getTrainingCenterByCode(centerCode);
+    }
 }

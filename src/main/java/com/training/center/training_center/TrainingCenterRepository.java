@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 interface TrainingCenterRepository extends JpaRepository<TrainingCenter, Long> {
-    List<TrainingCenter> findByCenterName(String CenterName);
+    List<TrainingCenter> findByCenterName(String centerName);
+    List<TrainingCenter> findByCenterCode(String centerCode);
 }
