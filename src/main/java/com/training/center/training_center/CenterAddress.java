@@ -4,8 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+/*
+Address class is used to create address objects for training centers. 
+It is also an entity and has one-to-one relationship with training center.
+*/
+
 @Entity
 class CenterAddress {
+
     @Id
     @GeneratedValue
     private int id;

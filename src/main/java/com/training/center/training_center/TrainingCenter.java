@@ -9,19 +9,40 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
+/*
+ Training center class has all the fields required to define a training center. Each attributes has their own getters and setters.
+ Some of the attributes has all the necessary validation annotations.
+ */
+
 @Entity
 class TrainingCenter {
     private @Id @GeneratedValue Long id;
+
+    @NotNull(message = "Center name is required")
+    @Size(min = 1, max = 40, message = "Center name should not exceed 40 characters")
     private String CenterName;
+
+    @NotNull(message = "Center code is required")
+    @Size(min = 12, max = 12, message = "Center code should be 12 characters")
     private String CenterCode;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @NotNull(message = "Center address is required")
     private CenterAddress address;
 
     private int StudentCapacity;
     private List<String> Cources;
     private LocalDateTime CreatedOn;
+
+    @Email(message = "Please enter valid email")
     private String ContactEmail;
+
+    @NotNull(message = "Phone is required")
+    @Size(min = 10, max = 10, message = "Please enter valid phone")
     private String ContactPhone;
 
     public Long getId() {
@@ -94,20 +115,5 @@ class TrainingCenter {
     
     public void setContactPhone(String contactPhone) {
         this.ContactPhone = contactPhone;
-    }
-
-    @Override
-    public String toString() {
-        return "TrainingCenter{" +
-                "id=" + id +
-                ", CenterName='" + CenterName + '\'' +
-                ", CenterCode='" + CenterCode + '\'' +
-                ", address=" + address +
-                ", StudentCapacity=" + StudentCapacity +
-                ", Courses=" + Cources +
-                ", CreatedOn=" + CreatedOn +
-                ", ContactEmail='" + ContactEmail + '\'' +
-                ", ContactPhone='" + ContactPhone + '\'' +
-                '}';
     }
 }
