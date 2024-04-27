@@ -25,4 +25,10 @@ public class TrainingCenterServiceImp implements TrainingCenterService {
         repository.save(newTrainingCenter);
         return newTrainingCenter;
     }
+
+    @Override
+    public List<TrainingCenter> getTrainingCenter(String CenterName) {
+        List<TrainingCenter> trainingCenter = repository.findByCenterName(CenterName);
+        return trainingCenter;
+    }
 }

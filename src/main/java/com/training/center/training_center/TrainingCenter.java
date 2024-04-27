@@ -24,26 +24,26 @@ class TrainingCenter {
 
     @NotNull(message = "Center name is required")
     @Size(min = 1, max = 40, message = "Center name should not exceed 40 characters")
-    private String CenterName;
+    private String centerName;
 
     @NotNull(message = "Center code is required")
     @Size(min = 12, max = 12, message = "Center code should be 12 characters")
-    private String CenterCode;
+    private String centerCode;
 
     @OneToOne(cascade = CascadeType.ALL)
     @NotNull(message = "Center address is required")
     private CenterAddress address;
 
-    private int StudentCapacity;
-    private List<String> Cources;
-    private LocalDateTime CreatedOn;
+    private int studentCapacity;
+    private List<String> cources;
+    private LocalDateTime createdOn;
 
     @Email(message = "Please enter valid email")
-    private String ContactEmail;
+    private String contactEmail;
 
     @NotNull(message = "Phone is required")
     @Size(min = 10, max = 10, message = "Please enter valid phone")
-    private String ContactPhone;
+    private String contactPhone;
 
     public Long getId() {
         return this.id;
@@ -54,19 +54,19 @@ class TrainingCenter {
     }
     
     public String getCenterName() {
-        return this.CenterName;
+        return this.centerName;
     }
     
     public void setCenterName(String CenterName) {
-        this.CenterName = CenterName;
+        this.centerName = CenterName;
     }
     
     public String getCenterCode() {
-        return this.CenterCode;
+        return this.centerCode;
     }
     
     public void setCenterCode(String CenterCode) {
-        this.CenterCode = CenterCode;
+        this.centerCode = CenterCode;
     }
 
     public CenterAddress getAddress() {
@@ -78,42 +78,42 @@ class TrainingCenter {
     }
 
     public int getStudentCapacity() {
-        return this.StudentCapacity;
+        return this.studentCapacity;
     }
     
     public void setStudentCapacity(int studentCapacity) {
-        this.StudentCapacity = studentCapacity;
+        this.studentCapacity = studentCapacity;
     }
     
     public List<String> getCources() {
-        return this.Cources;
+        return this.cources;
     }
     
     public void setCources(List<String> Cources) {
-        this.Cources = Cources;
+        this.cources = Cources;
     }
     
     public LocalDateTime getCreatedOn() {
-        return this.CreatedOn;
+        return this.createdOn;
     }
     
     public void setCreatedOn(LocalDateTime createdOn) {
-        this.CreatedOn = createdOn;
+        this.createdOn = createdOn;
     }
     
     public String getContactEmail() {
-        return this.ContactEmail;
+        return this.contactEmail;
     }
     
     public void setContactEmail(String contactEmail) {
-        this.ContactEmail = contactEmail;
+        this.contactEmail = contactEmail;
     }
     
     public String getContactPhone() {
-        return this.ContactPhone;
+        return this.contactPhone;
     }
     
     public void setContactPhone(String contactPhone) {
-        this.ContactPhone = contactPhone;
+        this.contactPhone = contactPhone;
     }
 }
