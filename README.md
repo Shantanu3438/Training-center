@@ -8,8 +8,12 @@ The application has the following dependencies:
 
 - Spring Boot Web Starter
 - Spring Boot Data JPA
-- Spring Boot Validation
+- Spring Boot Test Starter
+- Jackson Module Parameter Names
+- Jackson Datatype JSR310
+- Jackson Datatype JDK8
 - PostgreSQL Driver
+- Spring Boot Validation Starter
 
 ## Database Configuration
 
