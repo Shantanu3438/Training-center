@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,11 @@ class TrainingCenterController {
         
         // Return true if the email matches the pattern, false otherwise
         return matcher.matches();
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<String> handleEmailValidationException(ValidationException ve) {
+        return ResponseEntity.status(200).body((ve.getMessage()));
     }
 
     public boolean isValidPhoneNumber(String phoneNumber) {
@@ -62,22 +68,22 @@ class TrainingCenterController {
 
         String centerCode = newTrainingCenter.getCenterCode();
         if (centerCode.length() != 12) {
-            return ResponseEntity.status(400).body("Center code length should be 12 characters");
+            throw new ValidationException("Center code length should be 12 characters");
         }
 
         int centerNameLength = newTrainingCenter.getCenterName().length();
         if (centerNameLength >= 40) {
-            return ResponseEntity.status(400).body("Center name should be less than 40 characters");
+            throw new ValidationException("Center name should be less than 40 characters");
         }
 
         String contactEmail = newTrainingCenter.getContactEmail();
         if (!isValidEmail(contactEmail)) {
-            return ResponseEntity.status(400).body("Please enter valid email");
+            throw new ValidationException("Please enter valid email");
         }
 
         String contactPhone = newTrainingCenter.getContactPhone();
         if (!isValidPhoneNumber(contactPhone)) {
-            return ResponseEntity.status(400).body("Please enter valid phone");
+            throw new ValidationException("Please enter valid phone");
         }
 
         repository.save(newTrainingCenter);
